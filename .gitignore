@@ -39,9 +39,8 @@ android.iml
 android/app/libs
 android/keystores/debug.keystore
 
-# Cocoapods
-#
-example/ios/Pods
+# iOS
+example/ios
 
 # Ruby
 example/vendor/

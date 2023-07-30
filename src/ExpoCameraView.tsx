@@ -1,11 +1,18 @@
-import { requireNativeViewManager } from 'expo-modules-core';
-import * as React from 'react';
+import { NativeSyntheticEvent, ViewProps } from "react-native";
+import { requireNativeViewManager } from "expo-modules-core";
+import * as React from "react";
 
-import { ExpoCameraViewProps } from './ExpoCameraView.types';
+export type OnSavingVideoEvent = NativeSyntheticEvent<{ fileURL: string }>;
+export type OnSavedVideoEvent = NativeSyntheticEvent<{ fileURL: string }>;
 
-const NativeView: React.ComponentType<ExpoCameraViewProps> =
-  requireNativeViewManager('ExpoCameraView');
+export type ExpoCameraViewProps = {
+  isRecording: boolean;
+  onSavingVideo: () => void;
+  onSavedVideo: (args: OnSavedVideoEvent) => void;
+} & ViewProps;
 
-export default function ExpoCameraView(props: ExpoCameraViewProps) {
+const NativeView = requireNativeViewManager("ExpoCameraView");
+
+export function ExpoCameraView(props: ExpoCameraViewProps) {
   return <NativeView {...props} />;
 }
